@@ -8,7 +8,7 @@ public class TenPercentDiscount {
 
     public static String NAME = "TenPercentDiscount";
 
-    public Receipt apply(Receipt receipt) {
+    public Receipt apply(Receipt receipt) {                                 // creates a bill with an accrued discount
         if (shouldApply(receipt)) {
             var totalPrice = receipt.totalPrice().multiply(BigDecimal.valueOf(0.9));
             var discounts = receipt.discounts();
@@ -18,7 +18,7 @@ public class TenPercentDiscount {
         return receipt;
     }
 
-    private boolean shouldApply(Receipt receipt) {
+    private boolean shouldApply(Receipt receipt) {                          //  the method tells you when the discount should be charged
         return receipt.totalPrice().compareTo(BigDecimal.valueOf(50)) > 0;
     }
 }

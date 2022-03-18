@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 
 
 public class FifteenPercentDiscount {
-
+                                                                     //the discount is applied when there are 3 products grains in the cart
     public static String name = "FifteenPercentDiscounter";
 
-    public Receipt applyFifteenProcentDiscount(Receipt receipt, Basket basket) {
+    public Receipt applyFifteenProcentDiscount(Receipt receipt, Basket basket) {           // creates a bill with an accrued discount
         if (shouldApply(basket)) {
             var totalPrice = receipt.totalPrice().multiply(BigDecimal.valueOf(0.85));
             var discounts = receipt.discounts();
@@ -21,7 +21,7 @@ public class FifteenPercentDiscount {
         return receipt;
     }
 
-    private boolean shouldApply(Basket basket) {
+    private boolean shouldApply(Basket basket) {                //  the method tells you when the discount should be charged
         int count = 0;
 
         for (int i = 0; i < basket.getProducts().size(); i++) {

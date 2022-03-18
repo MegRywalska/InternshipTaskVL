@@ -11,22 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ReceiptController {
 
-    private final FifteenPercentDiscount fifteenPercentDiscount = new FifteenPercentDiscount();
-    private final TenPercentDiscount tenPercentDiscount = new TenPercentDiscount();
-
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, path = "/api/receipt-post")
-    public Receipt postReceipt() {
+    public Receipt postReceipt() {                                                  // At a later stage, add services, repository, mapper and databases
         var receipt = new ReceiptGenerator().generate(new Basket());
-        receipt = fifteenPercentDiscount.applyFifteenProcentDiscount(receipt, new Basket());
-        receipt = tenPercentDiscount.apply(receipt);
 
         return receipt;
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, path = "/api/receipt/{id}")
-    public Receipt getReceipt(@PathVariable(name = "id") Long id) {
-        return new Receipt();
+    public Receipt getReceipt(@PathVariable(name = "id") Long id) {                  // At a later stage, add services, repository, mapper and databases
+        var receipt = new ReceiptGenerator().generate(new Basket());
+
+        return receipt;
     }
 }
